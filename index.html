@@ -8,7 +8,66 @@
 </head>
 <body>
 
-<h3 class="favorite">Избранное</h3>
+
+<h1 class="weatherHere">Погода здесь</h1>
+<input type='button' class='updateButtonMain' value='Обновить геолокацию'>
+<input type='button' class='updateButtonMobile' value=''>
+
+
+<div class="currentCity">
+    <div class="currentMainInfo">
+        <h2>Saint-Petersburg</h2>
+        <div class="currentInfo">
+            <img src="resources/sun.png" alt="Whether in current" class="currentImage" height="40px" width="40px">
+            <span class="currentTemp">8°C</span>
+        </div>
+
+    </div>
+
+    <div class="currentInfo">
+
+        <ul class="cityInfo">
+            <li class="cityInfoItem">
+                <span class="cityInfoItemHeader">Ветер</span>
+                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+            </li>
+            <li class="cityInfoItem">
+                <span class="cityInfoItemHeader">Облачность</span>
+                <span class="cityInfoItemValue">Broken clouds</span>
+            </li>
+            <li class="cityInfoItem">
+                <span class="cityInfoItemHeader">Давление</span>
+                <span class="cityInfoItemValue">1013 hpa</span>
+            </li>
+            <li class="cityInfoItem">
+                <span class="cityInfoItemHeader">Влажность</span>
+                <span class="cityInfoItemValue">52 %</span>
+            </li>
+            <li class="cityInfoItem">
+                <span class="cityInfoItemHeader">Координаты</span>
+                <span class="cityInfoItemValue">[59.88, 30.42]</span>
+            </li>
+        </ul>
+
+
+    </div>
+
+
+</div>
+
+
+<div class="favoriteSection">
+    <div class="favoriteSectionTitle">
+        <h3 class="favorite">Избранное</h3>
+    </div>
+
+    <div class="favoriteSectionValue">
+        <input placeholder="Добавить новый город"/>
+        <button class="close">x</button>
+    </div>
+
+</div>
+
 
 <ul class="citiesCity">
 
