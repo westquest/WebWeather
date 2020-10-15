@@ -1,3 +1,61 @@
-h3{
-    color: blue;
+h3 {
+    color: dodgerblue;
+}
+
+li {
+    list-style: none;
+}
+
+li.cityInfoItem {
+    background-color: darkblue;
+    color: white;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+}
+
+ul.cityInfo {
+    padding: 0;
+    margin: 0;
+}
+
+.cityHeaderTitle {
+    display: inline-block;
+}
+
+.cityInfoItemHeader {
+    font-weight: bold;
+}
+
+.cityHeaderInfo{
+    width: 130px;
+}
+
+.cityInfoItem, .cityHeader, .cityHeaderInfo {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+li.city {
+    width: 40%;
+}
+
+.weatherIcon {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+button.close {
+    background-color: lightblue;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+}
+
+body{
+    margin: 0 20%;
 }
