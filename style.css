@@ -24,18 +24,20 @@ ul.cityInfo {
 
 .cityInfoItemHeader {
     font-weight: bold;
+    margin-right: 10px;
 }
 
-.cityHeaderInfo{
+.cityHeaderInfo {
     width: 130px;
 }
+
+
 
 .cityInfoItem, .cityHeader, .cityHeaderInfo {
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
-
 
 
 li.city {
@@ -56,6 +58,23 @@ button.close {
     border-radius: 50%;
 }
 
-body{
-    margin: 0 20%;
+ul li.city{
+    display: inline-block;
+    margin-right: 50px
 }
+
+ul li.city:nth-child(even){
+    margin-right: 0
+}
+
+
+@media screen and (max-width: 700px){
+    ul li.city{
+        display: block;
+    }
+
+    li.city {
+        width: 90%;
+    }
+}
+
