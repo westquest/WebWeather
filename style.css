@@ -19,12 +19,13 @@ li {
     border-radius: 50%;
 }
 
-.updateButtonMain {
-
+.favoriteSectionValue{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%
 
 }
-
-
 
 li.cityInfoItem {
     background-color: darkblue;
@@ -32,9 +33,6 @@ li.cityInfoItem {
     margin-bottom: 5px;
     padding: 5px 10px;
 }
-
-
-
 
 .cityHeaderTitle {
     display: inline-block;
@@ -48,7 +46,6 @@ li.cityInfoItem {
 .cityHeaderInfo {
     width: 130px;
 }
-
 
 .cityInfoItem, .cityHeader, .cityHeaderInfo {
     align-items: center;
@@ -69,14 +66,11 @@ ul li.city:nth-child(even) {
     margin-right: 0
 }
 
-
 .favoriteSection {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
-
 
 .currentMainInfo, .currentInfo {
     display: inline-block;
@@ -91,7 +85,6 @@ ul li.city:nth-child(even) {
 .currentTemp {
     font-size: 3em;
 }
-
 
 @media screen and (max-width: 700px) {
     ul li.city {
@@ -111,10 +104,6 @@ ul li.city:nth-child(even) {
         width: 90%;
     }
 
-
-
-
-
     .updateButtonMain {
         display: none;
     }
@@ -131,12 +120,19 @@ ul li.city:nth-child(even) {
         vertical-align: center;
     }
 
-    .favoriteSection, .favoriteSectionValue{
-        width: 700px
+    .favoriteSection{
+        width: 90%
     }
 
     .favoriteSection {
         display: block;
+    }
+
+    .favoriteSectionValue{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width:100%
     }
 
 }
@@ -145,11 +141,9 @@ input.addCity {
     border: none;
     background-color: lightblue;
     width: 75%;
-    padding: 0 5px;
+    padding: 5px 5px;
     border-radius: 10px;
-
 }
-
 
 .updateButtonMain {
     position: absolute;
@@ -175,18 +169,10 @@ button.close {
     width: 1.5em;
 }
 
-
 .geo-update{
 }
 
 body{
     margin: 0 20%
 }
-
-.favoriteSectionValue{
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-}
-
 
