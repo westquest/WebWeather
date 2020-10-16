@@ -10,12 +10,14 @@
 
 <header>
 
-    <h1 class="weatherHere">Погода здесь</h1>
-    <input type='button' class='updateButtonMain' value='Обновить геолокацию'>
-    <input type='button' class='updateButtonMobile' value=''>
+    <section class="geo-update">
+        <h1 class="weatherHere">Погода здесь</h1>
+        <input type='button' class='updateButtonMain' value='Обновить геолокацию'>
+        <input type='button' class='updateButtonMobile' value=''>
+    </section>
 
 
-    <div class="currentCity">
+    <section class="currentCity">
 
         <div class="currentMainInfo">
 
@@ -53,22 +55,22 @@
 
         </div>
 
-    </div>
+    </section>
 
 </header>
 
 <main>
-    <div class="favoriteSection">
+    <section class="favoriteSection">
         <div class="favoriteSectionTitle">
-            <h3 class="favorite">Избранное</h3>
+            <h2 class="favorite">Избранное</h2>
         </div>
 
         <div class="favoriteSectionValue">
             <input class="addCity" placeholder="Добавить новый город"/>
-            <button class="close">+</button>
+            <button class="close addCityButton">+</button>
         </div>
 
-    </div>
+    </section>
 
 
     <ul class="citiesList">
@@ -77,7 +79,7 @@
 
             <div class="cityHeader">
                 <div class="cityHeaderInfo">
-                    <h4 class="cityHeaderTitle">Moscow</h4>
+                    <h3 class="cityHeaderTitle">Moscow</h3>
                     <span class="cityHeaderTemperature">5°C</span>
                     <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
                 </div>
@@ -114,7 +116,7 @@
 
             <div class="cityHeader">
                 <div class="cityHeaderInfo">
-                    <h4 class="cityHeaderTitle">Helsinki</h4>
+                    <h3 class="cityHeaderTitle">Helsinki</h3>
                     <span class="cityHeaderTemperature">3°C</span>
                     <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
                 </div>
@@ -150,7 +152,7 @@
 
             <div class="cityHeader">
                 <div class="cityHeaderInfo">
-                    <h4 class="cityHeaderTitle">Moscow</h4>
+                    <h3 class="cityHeaderTitle">Moscow</h3>
                     <span class="cityHeaderTemperature">3°C</span>
                     <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
                 </div>
@@ -186,7 +188,7 @@
 
             <div class="cityHeader">
                 <div class="cityHeaderInfo">
-                    <h4 class="cityHeaderTitle">Helsinki</h4>
+                    <h3 class="cityHeaderTitle">Helsinki</h3>
                     <span class="cityHeaderTemperature">3°C</span>
                     <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
                 </div>
@@ -222,7 +224,7 @@
 
             <div class="cityHeader">
                 <div class="cityHeaderInfo">
-                    <h4 class="cityHeaderTitle">Moscow</h4>
+                    <h3 class="cityHeaderTitle">Moscow</h3>
                     <span class="cityHeaderTemperature">3°C</span>
                     <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
                 </div>
@@ -258,7 +260,7 @@
 
             <div class="cityHeader">
                 <div class="cityHeaderInfo">
-                    <h4 class="cityHeaderTitle">Helsinki</h4>
+                    <h3 class="cityHeaderTitle">Helsinki</h3>
                     <span class="cityHeaderTemperature">3°C</span>
                     <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
                 </div>
@@ -293,6 +295,7 @@
 
     </ul>
 </main>
+
 
 </body>
 </html>

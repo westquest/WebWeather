@@ -1,6 +1,3 @@
-h3 {
-    color: dodgerblue;
-}
 ul {
     padding: 0;
     margin: 0;
@@ -14,9 +11,10 @@ li {
     display: none;
     background-image: url("resources/update.png");
     background-repeat: no-repeat;
-    background-size: 17px 17px;
-    background-position: 0;
-    background-color: transparent;
+    background-size: 28px 28px;
+    height: 30px;
+    width: 30px;
+    background-position: 1px;
     border: none;
     border-radius: 50%;
 }
@@ -64,7 +62,7 @@ li.city {
 
 ul li.city {
     display: inline-block;
-    margin-right: 5%
+    margin-right: 19%
 }
 
 ul li.city:nth-child(even) {
@@ -76,7 +74,6 @@ ul li.city:nth-child(even) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 15%;
 }
 
 
@@ -84,7 +81,11 @@ ul li.city:nth-child(even) {
 .currentMainInfo, .currentInfo {
     display: inline-block;
     width: 40%;
-    margin-right: 5%
+    margin-right: 19%
+}
+
+.currentInfo{
+    margin-right: 0
 }
 
 .currentTemp {
@@ -108,13 +109,10 @@ ul li.city:nth-child(even) {
 
     .currentInfo, .currentMainInfo {
         width: 90%;
-        margin-right: 0;
     }
 
 
-    .favoriteSection {
-        display: block;
-    }
+
 
 
     .updateButtonMain {
@@ -124,30 +122,39 @@ ul li.city:nth-child(even) {
     .updateButtonMobile {
         display: inline;
         position: absolute;
-        top: 35px;
-        left: 200px;
+        top: 20px;
+        left: 300px;
     }
 
     .currentCity {
         display: block;
-        width: 90%;
         vertical-align: center;
     }
+
+    .favoriteSection, .favoriteSectionValue{
+        width: 700px
+    }
+
+    .favoriteSection {
+        display: block;
+    }
+
 }
 
 input.addCity {
     border: none;
     background-color: lightblue;
-    width: 300px;
-    padding: 10px 5px;
+    width: 75%;
+    padding: 0 5px;
     border-radius: 10px;
+
 }
 
 
 .updateButtonMain {
     position: absolute;
     top: 20px;
-    left: 35%;
+    left: 45%;
     border: none;
     background-color: lightblue;
     border-radius: 12px;
@@ -167,4 +174,19 @@ button.close {
     height: 1.5em;
     width: 1.5em;
 }
+
+
+.geo-update{
+}
+
+body{
+    margin: 0 20%
+}
+
+.favoriteSectionValue{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+
 
