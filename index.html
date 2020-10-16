@@ -8,287 +8,291 @@
 </head>
 <body>
 
+<header>
 
-<h1 class="weatherHere">Погода здесь</h1>
-<input type='button' class='updateButtonMain' value='Обновить геолокацию'>
-<input type='button' class='updateButtonMobile' value=''>
+    <h1 class="weatherHere">Погода здесь</h1>
+    <input type='button' class='updateButtonMain' value='Обновить геолокацию'>
+    <input type='button' class='updateButtonMobile' value=''>
 
 
-<div class="currentCity">
+    <div class="currentCity">
 
-    <div class="currentMainInfo">
+        <div class="currentMainInfo">
 
-        <h2>Saint-Petersburg</h2>
-        <img src="resources/sun.png" alt="Whether in current" class="currentImage" height="40px" width="40px">
-        <span class="currentTemp">8°C</span>
+            <h2>Saint-Petersburg</h2>
+            <img src="resources/sun.png" alt="Whether in current" class="currentImage" height="40px" width="40px">
+            <span class="currentTemp">8°C</span>
+
+        </div>
+
+        <div class="currentInfo">
+
+            <ul class="cityInfo">
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Ветер</span>
+                    <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Облачность</span>
+                    <span class="cityInfoItemValue">Broken clouds</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Давление</span>
+                    <span class="cityInfoItemValue">1013 hpa</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Влажность</span>
+                    <span class="cityInfoItemValue">52 %</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Координаты</span>
+                    <span class="cityInfoItemValue">[59.88, 30.42]</span>
+                </li>
+            </ul>
+
+
+        </div>
 
     </div>
 
-    <div class="currentInfo">
+</header>
 
-        <ul class="cityInfo">
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Ветер</span>
-                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Облачность</span>
-                <span class="cityInfoItemValue">Broken clouds</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Давление</span>
-                <span class="cityInfoItemValue">1013 hpa</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Влажность</span>
-                <span class="cityInfoItemValue">52 %</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Координаты</span>
-                <span class="cityInfoItemValue">[59.88, 30.42]</span>
-            </li>
-        </ul>
+<main>
+    <div class="favoriteSection">
+        <div class="favoriteSectionTitle">
+            <h3 class="favorite">Избранное</h3>
+        </div>
 
+        <div class="favoriteSectionValue">
+            <input class="addCity" placeholder="Добавить новый город"/>
+            <button class="close">+</button>
+        </div>
 
     </div>
 
-</div>
 
+    <ul class="citiesList">
 
-<div class="favoriteSection">
-    <div class="favoriteSectionTitle">
-        <h3 class="favorite">Избранное</h3>
-    </div>
+        <li class="city">
 
-    <div class="favoriteSectionValue">
-        <input class="addCity" placeholder="Добавить новый город"/>
-        <button class="close">+</button>
-    </div>
-
-</div>
-
-
-<ul class="citiesList">
-
-    <li class="city">
-
-        <div class="cityHeader">
-            <div class="cityHeaderInfo">
-                <h4 class="cityHeaderTitle">Moscow</h4>
-                <span class="cityHeaderTemperature">5°C</span>
-                <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+            <div class="cityHeader">
+                <div class="cityHeaderInfo">
+                    <h4 class="cityHeaderTitle">Moscow</h4>
+                    <span class="cityHeaderTemperature">5°C</span>
+                    <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+                </div>
+                <button class="close">x</button>
             </div>
-            <button class="close">x</button>
-        </div>
 
-        <ul class="cityInfo">
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Ветер</span>
-                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Облачность</span>
-                <span class="cityInfoItemValue">Broken clouds</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Давление</span>
-                <span class="cityInfoItemValue">1013 hpa</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Влажность</span>
-                <span class="cityInfoItemValue">52 %</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Координаты</span>
-                <span class="cityInfoItemValue">[59.88, 30.42]</span>
-            </li>
-        </ul>
+            <ul class="cityInfo">
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Ветер</span>
+                    <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Облачность</span>
+                    <span class="cityInfoItemValue">Broken clouds</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Давление</span>
+                    <span class="cityInfoItemValue">1013 hpa</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Влажность</span>
+                    <span class="cityInfoItemValue">52 %</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Координаты</span>
+                    <span class="cityInfoItemValue">[59.88, 30.42]</span>
+                </li>
+            </ul>
 
-    </li>
+        </li>
 
 
-    <li class="city">
+        <li class="city">
 
-        <div class="cityHeader">
-            <div class="cityHeaderInfo">
-                <h4 class="cityHeaderTitle">Helsinki</h4>
-                <span class="cityHeaderTemperature">3°C</span>
-                <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+            <div class="cityHeader">
+                <div class="cityHeaderInfo">
+                    <h4 class="cityHeaderTitle">Helsinki</h4>
+                    <span class="cityHeaderTemperature">3°C</span>
+                    <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+                </div>
+                <button class="close">x</button>
             </div>
-            <button class="close">x</button>
-        </div>
 
-        <ul class="cityInfo">
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Ветер</span>
-                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Облачность</span>
-                <span class="cityInfoItemValue">Broken clouds</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Давление</span>
-                <span class="cityInfoItemValue">1013 hpa</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Влажность</span>
-                <span class="cityInfoItemValue">52 %</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Координаты</span>
-                <span class="cityInfoItemValue">[59.88, 30.42]</span>
-            </li>
-        </ul>
+            <ul class="cityInfo">
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Ветер</span>
+                    <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Облачность</span>
+                    <span class="cityInfoItemValue">Broken clouds</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Давление</span>
+                    <span class="cityInfoItemValue">1013 hpa</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Влажность</span>
+                    <span class="cityInfoItemValue">52 %</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Координаты</span>
+                    <span class="cityInfoItemValue">[59.88, 30.42]</span>
+                </li>
+            </ul>
 
-    </li>
+        </li>
 
-    <li class="city">
+        <li class="city">
 
-        <div class="cityHeader">
-            <div class="cityHeaderInfo">
-                <h4 class="cityHeaderTitle">Moscow</h4>
-                <span class="cityHeaderTemperature">3°C</span>
-                <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+            <div class="cityHeader">
+                <div class="cityHeaderInfo">
+                    <h4 class="cityHeaderTitle">Moscow</h4>
+                    <span class="cityHeaderTemperature">3°C</span>
+                    <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+                </div>
+                <button class="close">x</button>
             </div>
-            <button class="close">x</button>
-        </div>
 
-        <ul class="cityInfo">
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Ветер</span>
-                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Облачность</span>
-                <span class="cityInfoItemValue">Broken clouds</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Давление</span>
-                <span class="cityInfoItemValue">1013 hpa</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Влажность</span>
-                <span class="cityInfoItemValue">52 %</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Координаты</span>
-                <span class="cityInfoItemValue">[59.88, 30.42]</span>
-            </li>
-        </ul>
+            <ul class="cityInfo">
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Ветер</span>
+                    <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Облачность</span>
+                    <span class="cityInfoItemValue">Broken clouds</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Давление</span>
+                    <span class="cityInfoItemValue">1013 hpa</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Влажность</span>
+                    <span class="cityInfoItemValue">52 %</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Координаты</span>
+                    <span class="cityInfoItemValue">[59.88, 30.42]</span>
+                </li>
+            </ul>
 
-    </li>
+        </li>
 
-    <li class="city">
+        <li class="city">
 
-        <div class="cityHeader">
-            <div class="cityHeaderInfo">
-                <h4 class="cityHeaderTitle">Helsinki</h4>
-                <span class="cityHeaderTemperature">3°C</span>
-                <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+            <div class="cityHeader">
+                <div class="cityHeaderInfo">
+                    <h4 class="cityHeaderTitle">Helsinki</h4>
+                    <span class="cityHeaderTemperature">3°C</span>
+                    <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+                </div>
+                <button class="close">x</button>
             </div>
-            <button class="close">x</button>
-        </div>
 
-        <ul class="cityInfo">
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Ветер</span>
-                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Облачность</span>
-                <span class="cityInfoItemValue">Broken clouds</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Давление</span>
-                <span class="cityInfoItemValue">1013 hpa</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Влажность</span>
-                <span class="cityInfoItemValue">52 %</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Координаты</span>
-                <span class="cityInfoItemValue">[59.88, 30.42]</span>
-            </li>
-        </ul>
+            <ul class="cityInfo">
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Ветер</span>
+                    <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Облачность</span>
+                    <span class="cityInfoItemValue">Broken clouds</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Давление</span>
+                    <span class="cityInfoItemValue">1013 hpa</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Влажность</span>
+                    <span class="cityInfoItemValue">52 %</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Координаты</span>
+                    <span class="cityInfoItemValue">[59.88, 30.42]</span>
+                </li>
+            </ul>
 
-    </li>
+        </li>
 
-    <li class="city">
+        <li class="city">
 
-        <div class="cityHeader">
-            <div class="cityHeaderInfo">
-                <h4 class="cityHeaderTitle">Moscow</h4>
-                <span class="cityHeaderTemperature">3°C</span>
-                <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+            <div class="cityHeader">
+                <div class="cityHeaderInfo">
+                    <h4 class="cityHeaderTitle">Moscow</h4>
+                    <span class="cityHeaderTemperature">3°C</span>
+                    <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+                </div>
+                <button class="close">x</button>
             </div>
-            <button class="close">x</button>
-        </div>
 
-        <ul class="cityInfo">
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Ветер</span>
-                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Облачность</span>
-                <span class="cityInfoItemValue">Broken clouds</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Давление</span>
-                <span class="cityInfoItemValue">1013 hpa</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Влажность</span>
-                <span class="cityInfoItemValue">52 %</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Координаты</span>
-                <span class="cityInfoItemValue">[59.88, 30.42]</span>
-            </li>
-        </ul>
+            <ul class="cityInfo">
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Ветер</span>
+                    <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Облачность</span>
+                    <span class="cityInfoItemValue">Broken clouds</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Давление</span>
+                    <span class="cityInfoItemValue">1013 hpa</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Влажность</span>
+                    <span class="cityInfoItemValue">52 %</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Координаты</span>
+                    <span class="cityInfoItemValue">[59.88, 30.42]</span>
+                </li>
+            </ul>
 
-    </li>
+        </li>
 
-    <li class="city">
+        <li class="city">
 
-        <div class="cityHeader">
-            <div class="cityHeaderInfo">
-                <h4 class="cityHeaderTitle">Helsinki</h4>
-                <span class="cityHeaderTemperature">3°C</span>
-                <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+            <div class="cityHeader">
+                <div class="cityHeaderInfo">
+                    <h4 class="cityHeaderTitle">Helsinki</h4>
+                    <span class="cityHeaderTemperature">3°C</span>
+                    <img class="weatherIcon" alt="Weather icon" src="resources/sun.png"/>
+                </div>
+                <button class="close">x</button>
             </div>
-            <button class="close">x</button>
-        </div>
 
-        <ul class="cityInfo">
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Ветер</span>
-                <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Облачность</span>
-                <span class="cityInfoItemValue">Broken clouds</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Давление</span>
-                <span class="cityInfoItemValue">1013 hpa</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Влажность</span>
-                <span class="cityInfoItemValue">52 %</span>
-            </li>
-            <li class="cityInfoItem">
-                <span class="cityInfoItemHeader">Координаты</span>
-                <span class="cityInfoItemValue">[59.88, 30.42]</span>
-            </li>
-        </ul>
+            <ul class="cityInfo">
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Ветер</span>
+                    <span class="cityInfoItemValue">Moderate breeze, 6.0 m/s, North-northwest</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Облачность</span>
+                    <span class="cityInfoItemValue">Broken clouds</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Давление</span>
+                    <span class="cityInfoItemValue">1013 hpa</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Влажность</span>
+                    <span class="cityInfoItemValue">52 %</span>
+                </li>
+                <li class="cityInfoItem">
+                    <span class="cityInfoItemHeader">Координаты</span>
+                    <span class="cityInfoItemValue">[59.88, 30.42]</span>
+                </li>
+            </ul>
 
-    </li>
+        </li>
 
 
-</ul>
+    </ul>
+</main>
 
 </body>
 </html>
