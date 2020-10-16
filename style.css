@@ -1,10 +1,32 @@
 h3 {
     color: dodgerblue;
 }
+ul {
+    padding: 0;
+    margin: 0;
+}
 
 li {
     list-style: none;
 }
+
+.updateButtonMobile {
+    display: none;
+    background-image: url("resources/update.png");
+    background-repeat: no-repeat;
+    background-size: 17px 17px;
+    background-position: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+}
+
+.updateButtonMain {
+
+
+}
+
+
 
 li.cityInfoItem {
     background-color: darkblue;
@@ -13,15 +35,8 @@ li.cityInfoItem {
     padding: 5px 10px;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-}
 
-ul.cityInfo {
-    padding: 0;
-    margin: 0;
-}
+
 
 .cityHeaderTitle {
     display: inline-block;
@@ -43,23 +58,8 @@ ul.cityInfo {
     justify-content: space-between;
 }
 
-
 li.city {
     width: 40%;
-}
-
-.weatherIcon {
-    height: 1.5em;
-    width: 1.5em;
-}
-
-button.close {
-    background-color: lightblue;
-    text-align: center;
-    height: 30px;
-    width: 30px;
-    border: none;
-    border-radius: 50%;
 }
 
 ul li.city {
@@ -71,43 +71,23 @@ ul li.city:nth-child(even) {
     margin-right: 0
 }
 
+
 .favoriteSection {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-right: 15%;
 }
 
-.updateButtonMobile {
-    display: none;
-    background-image: url("resources/update.png");
-    background-repeat: no-repeat;
-    background-size: 17px 17px;
-    background-position: 0;
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
-}
 
-.updateButtonMain{
-    border: none;
-    background-color: lightblue;
-    border-radius: 12px;
-    padding: 10px;
 
-}
-
-.currentCity{
-    display: flex;
-    justify-content: space-between;
-    padding-right: 15%;
-}
-
-.currentInfo{
+.currentMainInfo, .currentInfo {
     display: inline-block;
-
+    width: 40%;
+    margin-right: 5%
 }
 
-.currentTemp{
+.currentTemp {
     font-size: 3em;
 }
 
@@ -121,33 +101,70 @@ ul li.city:nth-child(even) {
         width: 90%;
     }
 
+    .currentInfo {
+        width: 90%;
+        margin-right: 0;
+    }
+
+    .currentInfo, .currentMainInfo {
+        width: 90%;
+        margin-right: 0;
+    }
+
+
     .favoriteSection {
         display: block;
     }
+
 
     .updateButtonMain {
         display: none;
     }
 
-    .updateButtonMobile{
+    .updateButtonMobile {
         display: inline;
         position: absolute;
         top: 35px;
         left: 200px;
     }
 
-    .currentCity{
+    .currentCity {
         display: block;
-
+        width: 90%;
+        vertical-align: center;
     }
 }
 
+input.addCity {
+    border: none;
+    background-color: lightblue;
+    width: 300px;
+    padding: 10px 5px;
+    border-radius: 10px;
+}
 
 
 .updateButtonMain {
     position: absolute;
-    top: 35px;
-    left: 45%;
-    transform: translate(-50%, 0);
+    top: 20px;
+    left: 35%;
+    border: none;
+    background-color: lightblue;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+button.close {
+    background-color: deepskyblue;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+}
+
+.weatherIcon {
+    height: 1.5em;
+    width: 1.5em;
 }
 
