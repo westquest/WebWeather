@@ -57,12 +57,12 @@ li.city {
     width: 40%;
 }
 
-ul li.city {
+li.city {
     display: inline-block;
     margin-right: 19%
 }
 
-ul li.city:nth-child(even) {
+li.city:nth-child(even) {
     margin-right: 0
 }
 
@@ -87,7 +87,7 @@ ul li.city:nth-child(even) {
 }
 
 @media screen and (max-width: 700px) {
-    ul li.city {
+    li.city {
         display: block;
     }
 
@@ -164,9 +164,13 @@ button.close {
     border-radius: 50%;
 }
 
+.cityHeaderTemperature{
+    margin-left: 10px;
+}
+
 .weatherIcon {
-    height: 1.5em;
-    width: 1.5em;
+    height: 3em;
+    width: 3em;
 }
 
 .geo-update{
@@ -176,3 +180,13 @@ body{
     margin: 0 20%
 }
 
+.loader {
+    display: none;
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.loaderVisible{
+    display: block;
+}
