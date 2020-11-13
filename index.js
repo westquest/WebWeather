@@ -9,10 +9,10 @@ window.addEventListener('load', async () => {
 
     document.querySelector('.favoriteSectionValue')
         .addEventListener('submit', (e) => {
-            console.log("Город добавлен в избранное")
             e.preventDefault()
             console.log(e.target.elements['cityToAdd'])
             addCity(e.target.elements['cityToAdd'].value)
+            e.target.elements['cityToAdd'].value = ''
         })
 
     try {
@@ -49,7 +49,7 @@ async function addCity(cityName) {
     }
     try {
         const weather = await getWeatherByCityName(cityName)
-        if (!favorites.includes(weather.id)) {
+        if (!favorites.includes(weather.id) && weather.weather !== undefined) {
             const favoritesEl = document.getElementById('favoriteCitiesList')
             const template = document.getElementById('favoriteCityTemplate')
             const city = document.importNode(template.content, true)
@@ -63,10 +63,15 @@ async function addCity(cityName) {
             favoritesEl.appendChild(city)
             favorites.push(weather.id)
             localStorage.setItem('favorites', JSON.stringify(favorites))
+            console.log("Город добавлен в избранное")
+        } else if (favorites.includes(weather.id)) {
+            alert(`${weather.name} уже есть в избранном!`)
+        } else {
+            alert(`Не удалось добавить город "${cityName}"`)
         }
     } catch (e) {
         console.error(e)
-        alert(`Не удалось добваить город "${cityName}"`)
+        alert(`Не удалось добавить город "${cityName}"`)
     }
 }
 
