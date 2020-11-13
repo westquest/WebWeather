@@ -190,3 +190,10 @@ body{
 .loaderVisible{
     display: block;
 }
+
+.loaderAdd{
+    display: block;
+    width: 100%;
+    align-items: end;
+
+}

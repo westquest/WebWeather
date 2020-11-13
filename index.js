@@ -48,7 +48,13 @@ async function addCity(cityName) {
         return
     }
     try {
+        let loadingElement = document.getElementById('loadingTitleAdd')
+        loadingElement.classList.add('loaderVisible')
+
         const weather = await getWeatherByCityName(cityName)
+
+        loadingElement.classList.remove('loaderVisible')
+
         if (!favorites.includes(weather.id) && weather.weather !== undefined) {
             const favoritesEl = document.getElementById('favoriteCitiesList')
             const template = document.getElementById('favoriteCityTemplate')
