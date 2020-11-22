@@ -6,11 +6,13 @@ const app = express()
 const port = 3000
 
 app.get('/weather/city', (req, res) => {
-    getWeatherByCityName('Moscow').then(r => {res.send(r)})
+    console.log(req.query.q)
+    getWeatherByCityName(req.query.q).then(r => {res.send(r)})
 })
 
 app.get('/weather/coordinates', (req, res) => {
-    getWeatherByCoordinates('52.58', '36.4').then(r => {res.send(r)})
+    console.log(req.query.lat + " ; " + req.query.long)
+    getWeatherByCoordinates(req.query.lat, req.query.long).then(r => {res.send(r)})
 })
 
 async function getWeatherByCityName(name) {
