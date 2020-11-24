@@ -1,4 +1,3 @@
-const API_KEY = 'a27dec4b70b2790c1b457b039a45cfe9'
 let currentCityId
 let defaultCityName = 'London'
 
@@ -67,8 +66,12 @@ async function addCity(cityName) {
 
             setWeather(el, weather)
             favoritesEl.appendChild(city)
+
+
             favorites.push(weather.id)
             localStorage.setItem('favorites', JSON.stringify(favorites))
+
+
             console.log("Город добавлен в избранное")
         } else if (favorites.includes(weather.id)) {
             alert(`${weather.name} уже есть в избранном!`)
@@ -141,16 +144,21 @@ function getCurrentLocation() {
 }
 
 async function getWeatherByCityName(name) {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&q=${name}&appid=${API_KEY}`)
+    const res = await fetch(`http://localhost:3000/weather/city?q=${name}`)
     return res.json()
 }
 
-async function getWeatherByCityId(id) {
+async function saveFavoriteCity(name) {
+    const res = await fetch(`http://localhost:3000/favorites?cityName=${name}`, {method:'POST'})
+    return res.status
+}
+
+/*async function getWeatherByCityId(id) {
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&id=${id}&appid=${API_KEY}`)
     return res.json()
-}
+}*/
 
 async function getWeatherByCoordinates(lat, lon) {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&lat=${lat}&lon=${lon}&appid=${API_KEY}`)
+    const res = await fetch(`http://localhost:3000/weather/coordinates?lat=${lat}&long=${lon}`)
     return res.json()
 }
