@@ -1,4 +1,4 @@
-let currentCityId
+let currentCityName
 let defaultCityName = 'London'
 
 window.addEventListener('load', async () => {
@@ -13,33 +13,22 @@ window.addEventListener('load', async () => {
             addCity(e.target.elements['cityToAdd'].value)
             e.target.elements['cityToAdd'].value = ''
         })
-
-    try {
-        favorites = JSON.parse(localStorage.getItem('favorites'))
-        console.log(favorites)
-    } catch (e) {
-        console.error(e)
-    }
-    if (!Array.isArray(favorites)) {
-        favorites = []
-    }
     updateWeatherHere()
-    favorites.forEach(id => loadCity(id))
+
+
+    //getFavoriteCity().forEach(id => loadCity(id))
 })
 
 
-function removeCity(id) {
+function removeCity(name) {
     const favoritesList = document.getElementById('favoriteCitiesList')
 
     const city = favoritesList.querySelector(`.city[cityId="${id}"]`)
     if (city !== null) {
         favoritesList.removeChild(city)
     }
-    const idx = favorites.indexOf(id)
-    if (idx !== -1) {
-        favorites.splice(idx, 1)
-        localStorage.setItem('favorites', JSON.stringify(favorites))
-    }
+
+    deleteFavoriteCity(name)
 }
 
 async function addCity(cityName) {
@@ -49,32 +38,28 @@ async function addCity(cityName) {
     try {
         let loadingElement = document.getElementById('loadingTitleAdd')
         loadingElement.classList.add('loaderVisible')
-
-        const weather = await getWeatherByCityName(cityName)
-
-        loadingElement.classList.remove('loaderVisible')
-
-        if (!favorites.includes(weather.id) && weather.weather !== undefined) {
-            const favoritesEl = document.getElementById('favoriteCitiesList')
-            const template = document.getElementById('favoriteCityTemplate')
-            const city = document.importNode(template.content, true)
-
-            const el = city.children[0]
-
-            el.setAttribute('cityId', weather.id)
-            el.querySelector(".deleteCity").addEventListener('click', () => removeCity(weather.id))
-
-            setWeather(el, weather)
-            favoritesEl.appendChild(city)
+        const pushStatus = await saveFavoriteCity(cityName)
 
 
-            favorites.push(weather.id)
-            localStorage.setItem('favorites', JSON.stringify(favorites))
+        if (pushStatus === 200) {
+            const weather = await getWeatherByCityName(cityName)
+            loadingElement.classList.remove('loaderVisible')
 
+            if (weather.weather !== undefined) {
+                const favoritesEl = document.getElementById('favoriteCitiesList')
+                const template = document.getElementById('favoriteCityTemplate')
+                const city = document.importNode(template.content, true)
 
-            console.log("Город добавлен в избранное")
-        } else if (favorites.includes(weather.id)) {
-            alert(`${weather.name} уже есть в избранном!`)
+                const el = city.children[0]
+
+                el.setAttribute('cityName', weather.name)
+                el.querySelector(".deleteCity").addEventListener('click', () => removeCity(weather.name))
+
+                setWeather(el, weather)
+                favoritesEl.appendChild(city)
+
+                console.log("Город добавлен в избранное")
+            }
         } else {
             alert(`Не удалось добавить город "${cityName}"`)
         }
@@ -82,10 +67,11 @@ async function addCity(cityName) {
         console.error(e)
         alert(`Не удалось добавить город "${cityName}"`)
     }
+
 }
 
-async function loadCity(id) {
-    const weather = await getWeatherByCityId(id)
+async function loadCity(name) {
+    const weather = await getWeatherByCityName(name)
     const favoritesList = document.getElementById('favoriteCitiesList')
     const template = document.getElementById('favoriteCityTemplate')
     const city = document.importNode(template.content, true)
@@ -108,8 +94,8 @@ async function updateWeatherHere() {
     currentWeatherElement.classList.add('loader')
     loadingElement.classList.add('loaderVisible')
 
-    if (currentCityId !== undefined) {
-        weatherData = await getWeatherByCityId(currentCityId)
+    if (currentCityName !== undefined) {
+        weatherData = await getWeatherByCityName(currentCityName)
     } else {
         try {
             const currentCoordinates = await getCurrentLocation()
@@ -119,7 +105,7 @@ async function updateWeatherHere() {
         }
     }
 
-    currentCityId = weatherData.id
+    //currentCityId = weatherData.id
     setWeather(weatherHere, weatherData)
     loadingElement.classList.remove('loaderVisible')
     currentWeatherElement.classList.remove('loader')
@@ -136,7 +122,6 @@ function setWeather(cityElement, weather) {
     cityElement.querySelector('.cityInfo .coords').textContent = '[' + weather.coord.lat + ' ' + weather.coord.lon + ']'
 }
 
-
 function getCurrentLocation() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((location) => resolve(location.coords), reject)
@@ -144,13 +129,23 @@ function getCurrentLocation() {
 }
 
 async function getWeatherByCityName(name) {
-    const res = await fetch(`http://localhost:3000/weather/city?q=${name}`)
+    const res = await fetch(`http://localhost:3000/weather/city?cityName=${name}`)
     return res.json()
 }
 
 async function saveFavoriteCity(name) {
-    const res = await fetch(`http://localhost:3000/favorites?cityName=${name}`, {method:'POST'})
+    const res = await fetch(`http://localhost:3000/favorites?cityName=${name}`, {method: 'POST'})
     return res.status
+}
+
+async function deleteFavoriteCity(name) {
+    const res = await fetch(`http://localhost:3000/favorites?cityName=${name}`, {method: 'DELETE'})
+    return res.status
+}
+
+async function getFavoriteCity() {
+    const res = await fetch(`http://localhost:3000/favorites`, {method: 'GET'})
+    return res.json
 }
 
 /*async function getWeatherByCityId(id) {
