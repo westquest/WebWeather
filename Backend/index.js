@@ -10,7 +10,7 @@ let a = []
 
 app.get('/weather/city', (req, res) => {
     console.log("Getting weather for name " + req.query.cityName)
-    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Origin', '*')
     getWeatherByCityName(req.query.cityName).then(r => {
         res.send(r)
     })
@@ -25,6 +25,21 @@ app.get('/weather/coordinates', (req, res) => {
 })
 
 app.route('/favorites')
+    .get((req, res) => {
+        res.set('Access-Control-Allow-Credentials', 'true')
+        res.set('Access-Control-Allow-Origin', req.headers.origin)
+        console.log('Getting favorites: ' + a)
+
+        const stmt = db.prepare(`SELECT city_name FROM favoriteCities`)
+        stmt.all((err, rows) => {
+            if (!err) {
+                res.json(rows.map(r => r['city_name']))
+            } else {
+                res.sendStatus(500)
+            }
+        })
+        stmt.finalize()
+    })
     .post((req, res) => {
         res.set('Access-Control-Allow-Methods', 'GET, OPTIONS, POST')
         res.set('Access-Control-Allow-Headers', 'Content-Type')
@@ -39,22 +54,6 @@ app.route('/favorites')
             } else {
                 res.sendStatus(500)
                 console.log('Error while adding to favorite: ' + a)
-            }
-        })
-        stmt.finalize()
-    })
-    .get((req, res) => {
-        res.set('Access-Control-Allow-Credentials', 'true')
-        res.set('Access-Control-Allow-Origin', req.headers.origin)
-        console.log('Getting favorites: ' + a)
-
-        const stmt = db.prepare(`SELECT city_name FROM favoriteCities`)
-
-        stmt.all(name, (err, rows) => {
-            if (!err) {
-                res.json(rows.map(r => r['city_name']))
-            } else {
-                res.sendStatus(500)
             }
         })
         stmt.finalize()
@@ -79,10 +78,7 @@ app.route('/favorites')
     })
 
 async function getWeatherByCityName(name) {
-    console.log("Before ot weather for name " + name)
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&q=${name}&appid=${API_KEY}`)
-    console.log("Got weather for name " + name)
-
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&q=${encodeURIComponent(name)}&appid=${API_KEY}`)
     return res.json()
 }
 
@@ -91,45 +87,10 @@ async function getWeatherByCoordinates(lat, lon) {
     return res.json()
 }
 
-
-
-
-/*app.get('/bd', (req, res) => {
-
-    db.serialize(function() {
-
-        db.run('CREATE TABLE cities (city_name TEXT)');
-        let stmt = db.prepare('INSERT INTO cities VALUES (?)');
-
-        for (let i = 0; i < 10; i++) {
-            stmt.run('Ipsum ' + i);
-        }
-
-        stmt.finalize();
-
-        db.each('SELECT * FROM cities', function(err, row) {
-            console.log(row);
-        });
-    });
-
-    db.close();
-})*/
-
-
-
 db.run('CREATE TABLE IF NOT EXISTS favoriteCities (city_name TEXT)')
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
 
-app.use(cors());
-
-
-
-
-
-
-
-
-
+app.use(cors())
