@@ -17,7 +17,9 @@ window.addEventListener('load', async () => {
 
     console.log("BEFORE LOADED CITIES")
     const cities = await getFavoriteCity()
-    cities.forEach(cityName => {loadCity(cityName)})
+    cities.forEach(cityName => {
+        loadCity(cityName)
+    })
 
 })
 
@@ -35,34 +37,42 @@ function removeCity(name) {
 
 async function addCity(cityName) {
     if (cityName.length === 0) {
+        alert(`Введите название города, чтобы добавить!`)
         return
     }
     try {
         let loadingElement = document.getElementById('loadingTitleAdd')
         loadingElement.classList.add('loaderVisible')
-        const pushStatus = await saveFavoriteCity(cityName)
+        const weather = await getWeatherByCityName(cityName)
+        console.log("TEST" + weather.weather)
+        if (weather.weather !== undefined) {
+            const pushStatus = await saveFavoriteCity(weather.name)
 
 
-        if (pushStatus === 200) {
-            const weather = await getWeatherByCityName(cityName)
-            loadingElement.classList.remove('loaderVisible')
+            if (pushStatus === 200) {
+                //const weather = await getWeatherByCityName(cityName)
+                loadingElement.classList.remove('loaderVisible')
 
-            if (weather.weather !== undefined) {
-                const favoritesEl = document.getElementById('favoriteCitiesList')
-                const template = document.getElementById('favoriteCityTemplate')
-                const city = document.importNode(template.content, true)
+                if (weather.weather !== undefined) {
+                    const favoritesEl = document.getElementById('favoriteCitiesList')
+                    const template = document.getElementById('favoriteCityTemplate')
+                    const city = document.importNode(template.content, true)
 
-                const el = city.children[0]
+                    const el = city.children[0]
 
-                el.setAttribute('cityName', weather.name)
-                el.querySelector(".deleteCity").addEventListener('click', () => removeCity(weather.name))
+                    el.setAttribute('cityName', weather.name)
+                    el.querySelector(".deleteCity").addEventListener('click', () => removeCity(weather.name))
 
-                setWeather(el, weather)
-                favoritesEl.appendChild(city)
+                    setWeather(el, weather)
+                    favoritesEl.appendChild(city)
 
-                console.log("Город добавлен в избранное")
+                    console.log("Город добавлен в избранное")
+                }
+            } else {
+                alert(`Не удалось добавить город "${cityName}"`)
             }
-        } else {
+        } else{
+            //loadingElement.classList.remove('loaderVisible')
             alert(`Не удалось добавить город "${cityName}"`)
         }
     } catch (e) {
