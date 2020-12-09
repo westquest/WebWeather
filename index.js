@@ -28,10 +28,10 @@ async function removeCity(name) {
     let loadingElement = document.getElementById('loadingTitleAdd')
     loadingElement.classList.add('loaderVisible')
 
-    const deleteStatus = await deleteFavoriteCity(name)
-    console.log("DELETE STATUS = " + deleteStatus)
+    const deleteRes = await deleteFavoriteCity(name)
+    console.log("DELETE STATUS = " + deleteRes.status)
 
-    if (deleteStatus === 200) {
+    if (deleteRes.status === 200) {
         const favoritesList = document.getElementById('favoriteCitiesList')
         const city = favoritesList.querySelector(`.city[cityName="${name}"]`)
         if (city !== null) {
@@ -160,7 +160,7 @@ async function saveFavoriteCity(name) {
 
 async function deleteFavoriteCity(name) {
     const res = await fetch(`http://localhost:3000/favorites?cityName=${name}`, {method: 'DELETE'})
-    return res.status
+    return res
 }
 
 async function getFavoriteCity() {

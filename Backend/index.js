@@ -69,7 +69,7 @@ app.route('/favorites')
         const stmt = db.prepare(`DELETE FROM favoriteCities WHERE city_name = ?`)
         stmt.run([req.query.cityName], (err, rows) => {
             if (!err) {
-                res.sendStatus(200)
+                res.json(req.query.cityName)
                 console.log('Deleted from favorite: ' + req.query.cityName)
             } else {
                 res.sendStatus(500)
