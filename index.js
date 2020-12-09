@@ -28,19 +28,24 @@ async function removeCity(name) {
     let loadingElement = document.getElementById('loadingTitleAdd')
     loadingElement.classList.add('loaderVisible')
 
-    const deleteRes = await deleteFavoriteCity(name)
-    console.log("DELETE STATUS = " + deleteRes.status)
+    try {
+        const deleteRes = await deleteFavoriteCity(name)
+        console.log("DELETE STATUS = " + deleteRes.status)
 
-    if (deleteRes.status === 200) {
-        const favoritesList = document.getElementById('favoriteCitiesList')
-        const city = favoritesList.querySelector(`.city[cityName="${name}"]`)
-        if (city !== null) {
-            favoritesList.removeChild(city)
+        if (deleteRes.status === 200) {
+            const favoritesList = document.getElementById('favoriteCitiesList')
+            const city = favoritesList.querySelector(`.city[cityName="${name}"]`)
+            if (city !== null) {
+                favoritesList.removeChild(city)
+            }
+        } else {
+            alert(`Не удалось удалить город "${name}"`)
         }
-    } else {
+        loadingElement.classList.remove('loaderVisible')
+    } catch {
+        loadingElement.classList.remove('loaderVisible')
         alert(`Не удалось удалить город "${name}"`)
     }
-    loadingElement.classList.remove('loaderVisible')
 
 }
 
@@ -49,8 +54,8 @@ async function addCity(cityName) {
         alert(`Введите название города, чтобы добавить!`)
         return
     }
+    let loadingElement = document.getElementById('loadingTitleAdd')
     try {
-        let loadingElement = document.getElementById('loadingTitleAdd')
         loadingElement.classList.add('loaderVisible')
         const weather = await getWeatherByCityName(cityName)
         console.log("TEST" + weather.weather)
@@ -78,13 +83,15 @@ async function addCity(cityName) {
                     console.log("Город добавлен в избранное")
                 }
             } else {
+                loadingElement.classList.remove('loaderVisible')
                 alert(`Не удалось добавить город "${cityName}"`)
             }
         } else {
-            //loadingElement.classList.remove('loaderVisible')
+            loadingElement.classList.remove('loaderVisible')
             alert(`Не удалось добавить город "${cityName}"`)
         }
     } catch (e) {
+        loadingElement.classList.remove('loaderVisible')
         console.error(e)
         alert(`Не удалось добавить город "${cityName}"`)
     }
@@ -107,28 +114,33 @@ async function loadCity(name) {
 }
 
 async function updateWeatherHere() {
-    let weatherData
-    const weatherHere = document.getElementById('weatherHereSection')
     let loadingElement = document.getElementById('loadingTitle')
-    let currentWeatherElement = document.getElementById('weatherHereSection')
+    try {
+        let weatherData
+        const weatherHere = document.getElementById('weatherHereSection')
+        let currentWeatherElement = document.getElementById('weatherHereSection')
 
-    currentWeatherElement.classList.add('loader')
-    loadingElement.classList.add('loaderVisible')
+        currentWeatherElement.classList.add('loader')
+        loadingElement.classList.add('loaderVisible')
 
-    if (currentCityName !== undefined) {
-        weatherData = await getWeatherByCityName(currentCityName)
-    } else {
-        try {
-            const currentCoordinates = await getCurrentLocation()
-            weatherData = await getWeatherByCoordinates(currentCoordinates.latitude, currentCoordinates.longitude)
-        } catch (e) {
-            weatherData = await getWeatherByCityName(defaultCityName)
+        if (currentCityName !== undefined) {
+            weatherData = await getWeatherByCityName(currentCityName)
+        } else {
+            try {
+                const currentCoordinates = await getCurrentLocation()
+                weatherData = await getWeatherByCoordinates(currentCoordinates.latitude, currentCoordinates.longitude)
+            } catch (e) {
+                weatherData = await getWeatherByCityName(defaultCityName)
+            }
         }
-    }
 
-    setWeather(weatherHere, weatherData)
-    loadingElement.classList.remove('loaderVisible')
-    currentWeatherElement.classList.remove('loader')
+        setWeather(weatherHere, weatherData)
+        loadingElement.classList.remove('loaderVisible')
+        currentWeatherElement.classList.remove('loader')
+    } catch {
+        loadingElement.classList.remove('loaderVisible')
+        alert(`Ошибка во время загрузки "${name}"`)
+    }
 }
 
 function setWeather(cityElement, weather) {
