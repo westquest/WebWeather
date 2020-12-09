@@ -11,7 +11,9 @@ let a = []
 app.get('/weather/city', (req, res) => {
     console.log("Getting weather for name " + req.query.cityName)
     res.set('Access-Control-Allow-Origin', '*')
+
     getWeatherByCityName(req.query.cityName).then(r => {
+        console.log("STATUS = " + r.toString())
         res.send(r)
     })
 })
@@ -68,10 +70,10 @@ app.route('/favorites')
         stmt.run([req.query.cityName], (err, rows) => {
             if (!err) {
                 res.sendStatus(200)
-                console.log('Deleted from favorite: ' + a)
+                console.log('Deleted from favorite: ' + req.query.cityName)
             } else {
                 res.sendStatus(500)
-                console.log('Error while deleting from favorite: ' + a)
+                console.log('Error while deleting from favorite: ' + req.query.cityName)
             }
         })
         stmt.finalize()

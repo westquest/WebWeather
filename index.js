@@ -24,15 +24,24 @@ window.addEventListener('load', async () => {
 })
 
 
-function removeCity(name) {
-    const favoritesList = document.getElementById('favoriteCitiesList')
+async function removeCity(name) {
+    let loadingElement = document.getElementById('loadingTitleAdd')
+    loadingElement.classList.add('loaderVisible')
 
-    const city = favoritesList.querySelector(`.city[cityName="${name}"]`)
-    if (city !== null) {
-        favoritesList.removeChild(city)
+    const deleteStatus = await deleteFavoriteCity(name)
+    console.log("DELETE STATUS = " + deleteStatus)
+
+    if (deleteStatus === 200) {
+        const favoritesList = document.getElementById('favoriteCitiesList')
+        const city = favoritesList.querySelector(`.city[cityName="${name}"]`)
+        if (city !== null) {
+            favoritesList.removeChild(city)
+        }
+    } else {
+        alert(`Не удалось удалить город "${name}"`)
     }
+    loadingElement.classList.remove('loaderVisible')
 
-    deleteFavoriteCity(name)
 }
 
 async function addCity(cityName) {
@@ -71,7 +80,7 @@ async function addCity(cityName) {
             } else {
                 alert(`Не удалось добавить город "${cityName}"`)
             }
-        } else{
+        } else {
             //loadingElement.classList.remove('loaderVisible')
             alert(`Не удалось добавить город "${cityName}"`)
         }
