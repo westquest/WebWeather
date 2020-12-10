@@ -24,7 +24,10 @@ window.addEventListener('load', async () => {
 })
 
 
-async function removeCity(name) {
+async function removeCity(name, button) {
+
+    button.disabled = true
+
     let loadingElement = document.getElementById('loadingTitleAdd')
     loadingElement.classList.add('loaderVisible')
 
@@ -42,10 +45,13 @@ async function removeCity(name) {
             alert(`Не удалось удалить город "${name}"`)
         }
         loadingElement.classList.remove('loaderVisible')
+        button.disabled = false
     } catch {
         loadingElement.classList.remove('loaderVisible')
         alert(`Не удалось удалить город "${name}"`)
+        button.disabled = false
     }
+    button.disabled = false
 
 }
 
@@ -75,7 +81,9 @@ async function addCity(cityName) {
                     const el = city.children[0]
 
                     el.setAttribute('cityName', weather.name)
-                    el.querySelector(".deleteCity").addEventListener('click', () => removeCity(weather.name))
+                    el.querySelector(".deleteCity").addEventListener('click', () => {
+                       removeCity(weather.name, el.querySelector(".deleteCity"))
+                    })
 
                     setWeather(el, weather)
                     favoritesEl.appendChild(city)
