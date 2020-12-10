@@ -6,7 +6,7 @@ const app = express()
 const port = 3000
 let sqlite3 = require('sqlite3').verbose()
 let db = new sqlite3.Database('./sqlite.db')
-let a = []
+let a = 200
 
 app.get('/weather/city', (req, res) => {
     console.log("Getting weather for name " + req.query.cityName)
@@ -14,7 +14,11 @@ app.get('/weather/city', (req, res) => {
 
     getWeatherByCityName(req.query.cityName).then(r => {
         console.log("STATUS = " + r.toString())
-        res.send(r)
+        if (a === 200) {
+            res.send(r)
+        } else{
+            res.sendStatus(404)
+        }
     })
 })
 
@@ -32,7 +36,8 @@ app.route('/favorites')
         res.set('Access-Control-Allow-Origin', req.headers.origin)
         console.log('Getting favorites: ' + a)
 
-        const stmt = db.prepare(`SELECT city_name FROM favoriteCities`)
+        const stmt = db.prepare(`SELECT city_name
+                                 FROM favoriteCities`)
         stmt.all((err, rows) => {
             if (!err) {
                 res.json(rows.map(r => r['city_name']))
@@ -48,7 +53,8 @@ app.route('/favorites')
         res.set('Access-Control-Allow-Origin', req.headers.origin)
         res.set('Access-Control-Allow-Credentials', 'true')
 
-        const stmt = db.prepare(`INSERT INTO favoriteCities VALUES (?)`)
+        const stmt = db.prepare(`INSERT INTO favoriteCities
+                                 VALUES (?)`)
         stmt.run([req.query.cityName], (err, rows) => {
             if (!err) {
                 res.sendStatus(200)
@@ -66,7 +72,9 @@ app.route('/favorites')
         res.set('Access-Control-Allow-Origin', req.headers.origin);
         res.set('Access-Control-Allow-Credentials', 'true');
 
-        const stmt = db.prepare(`DELETE FROM favoriteCities WHERE city_name = ?`)
+        const stmt = db.prepare(`DELETE
+                                 FROM favoriteCities
+                                 WHERE city_name = ?`)
         stmt.run([req.query.cityName], (err, rows) => {
             if (!err) {
                 res.json(req.query.cityName)
@@ -81,6 +89,7 @@ app.route('/favorites')
 
 async function getWeatherByCityName(name) {
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&q=${encodeURIComponent(name)}&appid=${API_KEY}`)
+    a = res.status
     return res.json()
 }
 

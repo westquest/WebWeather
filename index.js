@@ -92,7 +92,7 @@ async function addCity(cityName) {
         }
     } catch (e) {
         loadingElement.classList.remove('loaderVisible')
-        console.error(e)
+        //console.error(e)
         alert(`Не удалось добавить город "${cityName}"`)
     }
 
