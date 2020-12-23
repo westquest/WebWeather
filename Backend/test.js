@@ -2,8 +2,8 @@ import mocha from 'mocha'
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon'
-import './index.js'
-//import sqlite3 from 'sqlite3'
+import sqlite3 from 'sqlite3'
+import { Api } from './Api.js'
 import {app} from './index.js'
 
 chai.use(chaiHttp)
@@ -16,7 +16,8 @@ const {request, expect} = chai
 
 describe('/weather', () => {
     const sampleResponse = {"coord":{"lon":-0.13,"lat":51.51},"weather":[{"id":803,"main":"Clouds","description":"облачно с прояснениями","icon":"04n"}],"base":"stations","main":{"temp":10.73,"feels_like":9.21,"temp_min":10,"temp_max":11.67,"pressure":1012,"humidity":93},"visibility":6000,"wind":{"speed":2.1,"deg":90},"clouds":{"all":75},"dt":1608668975,"sys":{"type":1,"id":1414,"country":"GB","sunrise":1608624271,"sunset":1608652437},"timezone":0,"id":2643743,"name":"Лондон","cod":200}
-    //stub(module, 'getWeatherByCityName').returns(sampleResponse)
+    stub(Api.prototype, 'getWeatherByCityName').returns(sampleResponse)
+    stub(Api.prototype, 'getWeatherByCoordinates').returns(sampleResponse)
 
     describe('GET /weather/city', () => {
         it('Should return 200', (done) => {
