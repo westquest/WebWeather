@@ -1,41 +1,56 @@
-const API_KEY = 'a27dec4b70b2790c1b457b039a45cfe9'
-const fetch = require('node-fetch')
-const express = require('express')
-const cors = require('cors')
-const app = express()
+import express from 'express'
+import {Api} from './Api.js'
+import cors from 'cors'
+
+export const app = express()
 const port = 3000
-let sqlite3 = require('sqlite3').verbose()
+import sqlite3i from 'sqlite3'
+
+const api = new Api()
+
+let sqlite3 = sqlite3i.verbose()
 let db = new sqlite3.Database('./sqlite.db')
-let a = 200
 
-app.get('/weather/city', (req, res) => {
-    console.log("Getting weather for name " + req.query.cityName)
+
+app.get('/weather/city', async (req, res) => {
+    const cityName = req.query.cityName
+    console.log("Getting weather for name " + cityName)
     res.set('Access-Control-Allow-Origin', '*')
-
-    getWeatherByCityName(req.query.cityName).then(r => {
-        console.log("STATUS = " + r.toString())
-        if (a === 200) {
-            res.send(r)
+    try {
+        const response = await api.getWeatherByCityName(cityName)
+        if (response.cod === 200) {
+            res.json(response)
         } else{
-            res.sendStatus(404)
+            res.status(response.cod).end()
         }
-    })
+    } catch (e) {
+        console.error(e)
+        res.status(500).end()
+    }
+
 })
 
-app.get('/weather/coordinates', (req, res) => {
-    console.log("Getting weather for coords " + req.query.lat + " ; " + req.query.long)
+app.get('/weather/coordinates', async (req, res) => {
+    const lat = req.query.lat
+    const long = req.query.long
     res.set('Access-Control-Allow-Origin', '*')
-    getWeatherByCoordinates(req.query.lat, req.query.long).then(r => {
-        res.send(r)
-    })
+    try {
+        const response = await api.getWeatherByCoordinates(lat, long)
+        if (response.cod === 200) {
+            res.json(response)
+        } else{
+            res.status(response.cod).end()
+        }
+    } catch (e) {
+        console.error(e)
+        res.status(500).end()
+    }
 })
 
 app.route('/favorites')
     .get((req, res) => {
         res.set('Access-Control-Allow-Credentials', 'true')
         res.set('Access-Control-Allow-Origin', req.headers.origin)
-        console.log('Getting favorites: ' + a)
-
         const stmt = db.prepare(`SELECT city_name
                                  FROM favoriteCities`)
         stmt.all((err, rows) => {
@@ -58,10 +73,9 @@ app.route('/favorites')
         stmt.run([req.query.cityName], (err, rows) => {
             if (!err) {
                 res.sendStatus(200)
-                console.log('Added to favorite: ' + a)
             } else {
                 res.sendStatus(500)
-                console.log('Error while adding to favorite: ' + a)
+                console.log('Error while adding to favorite: ' + req.query.cityName)
             }
         })
         stmt.finalize()
@@ -87,16 +101,6 @@ app.route('/favorites')
         stmt.finalize()
     })
 
-async function getWeatherByCityName(name) {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&q=${encodeURIComponent(name)}&appid=${API_KEY}`)
-    a = res.status
-    return res.json()
-}
-
-async function getWeatherByCoordinates(lat, lon) {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&lat=${lat}&lon=${lon}&appid=${API_KEY}`)
-    return res.json()
-}
 
 db.run('CREATE TABLE IF NOT EXISTS favoriteCities (city_name TEXT)')
 

@@ -15,7 +15,6 @@ window.addEventListener('load', async () => {
         })
     updateWeatherHere()
 
-    console.log("BEFORE LOADED CITIES")
     const cities = await getFavoriteCity()
     cities.forEach(cityName => {
         loadCity(cityName)
@@ -187,11 +186,6 @@ async function getFavoriteCity() {
     const res = await fetch(`http://localhost:3000/favorites`, {method: 'GET'})
     return res.json()
 }
-
-/*async function getWeatherByCityId(id) {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&id=${id}&appid=${API_KEY}`)
-    return res.json()
-}*/
 
 async function getWeatherByCoordinates(lat, lon) {
     const res = await fetch(`http://localhost:3000/weather/coordinates?lat=${lat}&long=${lon}`)
