@@ -20,9 +20,9 @@ describe('/weather', () => {
     stub(Api.prototype, 'getWeatherByCoordinates').returns(sampleResponse)
 
     describe('GET /weather/city', () => {
-        it('Should return 200', (done) => {
+        it('Should return 200 (London)', (done) => {
             request(app)
-                .get('/weather/city?cityName=Moscow')
+                .get('/weather/city?cityName=London')
                 .end((err, res) => {
                     expect(res).to.have.status(200)
                     expect(res).to.be.json

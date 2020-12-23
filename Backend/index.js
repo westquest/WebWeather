@@ -14,9 +14,13 @@ let db = new sqlite3.Database('./sqlite.db')
 
 app.get('/weather/city', async (req, res) => {
     const cityName = req.query.cityName
-    console.log("Getting weather for name " + cityName)
+    //console.log("Getting weather for name " + cityName)
     res.set('Access-Control-Allow-Origin', '*')
     try {
+        if (typeof cityName !== 'string' || cityName === ""){
+            res.status(400).end('Missed or wrong cityName param');
+            return;
+        }
         const response = await api.getWeatherByCityName(cityName)
         if (response.cod === 200) {
             res.json(response)
@@ -35,6 +39,10 @@ app.get('/weather/coordinates', async (req, res) => {
     const long = req.query.long
     res.set('Access-Control-Allow-Origin', '*')
     try {
+        if (typeof lat !== 'string' || typeof long !== 'string' || lat === "" || long === ""){
+            res.status(400).end('Missed or wrong lat or long param');
+            return;
+        }
         const response = await api.getWeatherByCoordinates(lat, long)
         if (response.cod === 200) {
             res.json(response)
