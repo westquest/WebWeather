@@ -113,8 +113,9 @@ async function loadCity(name) {
     const el = city.children[0]
 
     el.setAttribute('cityName', weather.name)
-    el.querySelector('.deleteCity')
-        .addEventListener('click', () => removeCity(weather.name))
+    el.querySelector(".deleteCity")
+        .addEventListener('click', () => {removeCity(weather.name, el.querySelector(".deleteCity"))
+    })
 
     setWeather(el, weather)
     favoritesList.appendChild(city)
